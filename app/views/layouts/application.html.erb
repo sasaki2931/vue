@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+            <!-- v-model="name"で、Vue.jsで設定したdateとHTMLのinput要素が同期する -->
+            名前：<input v-model="name">
+            コース：<input v-model="course">
+            受講期：<input v-model="season">
+            <br>
+            <!-- button v-on:click="addStudent"で、buttonがclickされた時に起動するメソッドを選択する -->
+            <button v-on:click="addTask">入力した生徒を追加する</button>
+
+            <ul>
+                <!-- v-for="student in students" で、配列studentsを一つ一つ切り出して変数studentに代入している -->
+                <!-- v-bind:key="student.id"は、切り出された各要素の一意性を確保するために使う -->
+                <li v-for="task in tasks" v-bind:key="task.id">
+                    <!-- {{ }} のなかに書いた記述で、Vue.jsのデータの式展開が行える -->
+                    ID {{task.id}} /
+                    名前 {{task.name}} /
+                    コース {{task.course}} /
+                    受講期 {{task.season}}
+                </li>
+            </ul>
+    </div>
+
+        
+        <%= javascript_pack_tag 'sample.js' %>
+      <%= yield %>
+  </body>
+</html>
